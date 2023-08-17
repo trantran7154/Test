@@ -35,7 +35,7 @@ class ProductsController {
     }
 
     delete(req, res, next) {
-        Product.findByIdAndDelete({ _id: req.params.id })
+        Product.delete({ _id: req.params.id })
             .then(() => res.redirect("back"))
             .catch(next);
     }
@@ -52,6 +52,16 @@ class ProductsController {
         Product.find({})
             .then((products) =>
                 res.render("products/me", {
+                    products: mongoose.multipleMongooseToObject(products),
+                })
+            )
+            .catch(next);
+    }
+
+    trash(req, res, next) {
+        Product.findDeleted({})
+            .then((products) =>
+                res.render("products/trash", {
                     products: mongoose.multipleMongooseToObject(products),
                 })
             )

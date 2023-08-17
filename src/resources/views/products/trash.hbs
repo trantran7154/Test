@@ -1,7 +1,7 @@
 <div class="mt-4">
-    <h3 class="font-weight-bold text-center">SẢN PHẨM CỦA TÔI</h3>
+    <h3 class="font-weight-bold text-center">SẢN PHẨM ĐÃ XÓA</h3>
    <div class="mt-4">
-    <a type="button" class="btn btn-outline-success" href="/products/trash"><i class="icon-trash"></i> Thùng rác</a>  
+    <a href="/products/me"><i class="icon-circle-arrow-left"></i> Quay lại</a>  
    </div>
     <table class="table mt-4">
         <thead>
@@ -24,9 +24,9 @@
                 <td>{{this.description}}</td>
                 <td>{{this.createdAt}}</td>
                 <td>{{this.updatedAt}}</td>
-                <td><a href="/products/edit/{{this._id}}">Sửa</a></td>
+                <td><a href="/products/edit/{{this._id}}"><i class="icon-undo"></i></a></td>
                 <td><a href="/products/delete" data-toggle="modal" data-target="#productModal"
-                        data-id="{{this._id}}">Xóa</a></td>
+                        data-id="{{this._id}}"><i class="icon-trash"></i></a></td>
             </tr>
             {{else}}
             <tr>
