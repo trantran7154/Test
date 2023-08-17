@@ -21,10 +21,52 @@
                 <td>{{this.description}}</td>
                 <td>{{this.createdAt}}</td>
                 <td>{{this.updatedAt}}</td>
-                 <td><a href="/products/edit/{{this._id}}">Sửa</a></td>
-                  <td><a href="/products/delete">Xóa</a></td>
+                <td><a href="/products/edit/{{this._id}}">Sửa</a></td>
+                <td><a href="/products/delete" data-toggle="modal" data-target="#productModal"
+                        data-id="{{this._id}}">Xóa</a></td>
             </tr>
             {{/each}}
         </tbody>
     </table>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Xóa sản phẩm {{this.name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa sản phẩm này?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btn-delete-product">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="form-delete-product" method="POST"></form>
+
+<script>
+    var productId;
+    var deleteProductForm = document.forms['form-delete-product'];
+    var btnDeleteProduct = document.getElementById('btn-delete-product');
+
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#productModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            productId = button.data('id');
+        });
+    });
+
+    btnDeleteProduct.onclick = function () {
+        deleteProductForm.action = '/products/' + productId + '?_method=DELETE';
+        deleteProductForm.submit();
+    }
+</script>

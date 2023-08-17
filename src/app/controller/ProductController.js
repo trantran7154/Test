@@ -2,7 +2,6 @@ const Product = require("../models/Product");
 const mongoose = require("../../util/mongoose");
 
 class ProductsController {
-    // [GET] /products/:slug
     show(req, res, next) {
         Product.findOne({
                 slug: req.params.slug,
@@ -14,9 +13,11 @@ class ProductsController {
             )
             .catch(next);
     }
+
     create(req, res, next) {
         res.render("products/create");
     }
+
     edit(req, res, next) {
         Product.findById(req.params.id)
             .then((products) =>
@@ -26,11 +27,19 @@ class ProductsController {
             )
             .catch(next);
     }
+
     update(req, res, next) {
         Product.findByIdAndUpdate({ _id: req.params.id }, req.body)
             .then(() => res.redirect("me"))
             .catch(next);
     }
+
+    delete(req, res, next) {
+        Product.findByIdAndDelete({ _id: req.params.id })
+            .then(() => res.redirect("back"))
+            .catch(next);
+    }
+
     store(req, res, next) {
         const product = new Product(req.body);
         product
@@ -38,6 +47,7 @@ class ProductsController {
             .then(() => res.redirect("/"))
             .catch(next);
     }
+
     me(req, res, next) {
         Product.find({})
             .then((products) =>
