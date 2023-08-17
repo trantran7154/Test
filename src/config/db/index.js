@@ -3,11 +3,17 @@ const mongoose = require('mongoose');
 async function connect() {
     try {
         mongoose.set('strictQuery', false);
-        mongoose.connect('mongodb://127.0.0.1:27017/test_dev')
+        mongoose.connect('mongodb://127.0.0.1:27017/test_dev', {
+                useNewUrlParser: true,
+                useCreateIndex: true,
+                useUnifiedTopology: true
+            })
             .then(() => console.log('Connected!!!'));
     } catch (error) {
         console.log('Connection failed!!!');
     }
 }
 
-module.exports = { connect };
+module.exports = {
+    connect
+};

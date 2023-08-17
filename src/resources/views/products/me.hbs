@@ -1,0 +1,30 @@
+<div class="mt-4">
+    <h3 class="font-weight-bold text-center">SẢN PHẨM CỦA TÔI</h3>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Tên sản phẫm</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Ngày tạo</th>
+                <th scope="col">Ngày cập nhật</th>
+                <th scope="col" colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td> <img class="card-img-top" src="{{this.img}}" alt="{{this.name}}" /></a></td>
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>{{this.updatedAt}}</td>
+                 <td><a href="/products/edit/{{this._id}}">Sửa</a></td>
+                  <td><a href="/products/delete">Xóa</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
