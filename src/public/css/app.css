@@ -1,13 +1,22 @@
+a {
+    text-decoration: none;
+}
+
 .product-item {
     margin-top: 50px;
 }
 
 .product-button {
     float: right;
+    font-weight: bold;
 }
 
 .product-name {
-    font-size: 22px;
+    font-size: 19px;
     color: dodgerblue;
     font-weight: bold;
+}
+
+.product-label {
+    font-weight: 500;
 }
