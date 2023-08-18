@@ -34,7 +34,7 @@ class ProductsController {
             .catch(next);
     }
 
-    delete(req, res, next) {
+    destroy(req, res, next) {
         Product.delete({ _id: req.params.id })
             .then(() => res.redirect("back"))
             .catch(next);
@@ -65,6 +65,18 @@ class ProductsController {
                     products: mongoose.multipleMongooseToObject(products),
                 })
             )
+            .catch(next);
+    }
+
+    restore(req, res, next) {
+        Product.restore({ _id: req.params.id })
+            .then(() => res.redirect("back"))
+            .catch(next);
+    }
+
+    delete(req, res, next) {
+        Product.findByIdAndDelete({ _id: req.params.id })
+            .then(() => res.redirect("back"))
             .catch(next);
     }
 }
